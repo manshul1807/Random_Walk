@@ -13,7 +13,14 @@ import random
 
 while True:
     try:
-        start = int(input('Enter the starting number: '))
+        x_start = int(input('Enter the x starting dimension: '))
+        break
+    except ValueError:
+        print('Enter a valid integer')
+
+while True:
+    try:
+        y_start = int(input('Enter the y starting dimension: '))
         break
     except ValueError:
         print('Enter a valid integer')
@@ -27,13 +34,17 @@ while True:
         print('Enter a valid integer')
 
 # create a list of all the points
-l = [start]
+
+x_list = [x_start]
+y_list = [y_start]
 for i in range(step):
-    k = random.choice([-1, 1])
-    start += k
-    l.append(start)
+    (dx, dy) = random.choice([(0, 1), (0, -1), (1, 0), (-1, 0)])
+    x_start += dx
+    y_start += dy
+    x_list.append(x_start)
+    y_list.append(y_start)
 
 # plot the walk
-plt.plot(l)
-plt.title('1 D Random Walk')
+plt.plot(x_list, y_list)
+plt.title('2 D Random Walk')
 plt.show()
